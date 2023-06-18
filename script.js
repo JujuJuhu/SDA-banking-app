@@ -27,7 +27,7 @@ const account1 = {
     "2020-08-01T10:51:36.790Z",
   ],
   currency: "IDR",
-  locale: "pt-PT", // de-DE
+  locale: "in-ID", // de-DE
 };
 
 const account2 = {
@@ -80,6 +80,8 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
+const loginWrapper = document.querySelector("#login-wrapper");
+const loginTextLabel = document.querySelector("#login-text-label");
 
 /////////////////////////////////////////////////
 // Functions
@@ -165,6 +167,19 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
+/**
+ * Clear Login Form when user has been login
+ */
+const hideLoginAttribute = () => {
+  loginWrapper.style.opacity= 0;
+  loginTextLabel.style.opacity= 0;
+}
+
+const showLoginAttribute = () => {
+  loginWrapper.style.opacity= 100;
+  loginTextLabel.style.opacity= 100;
+}
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -185,25 +200,28 @@ const updateUI = function (acc) {
 
   // Display summary
   calcDisplaySummary(acc);
+
+  hideLoginAttribute();
 };
 
 const startLogOutTimer = function () {
   const tick = function () {
-    const min = String(Math.trunc(time / 60)).padStart(2, 0);
-    const sec = String(time % 60).padStart(2, 0);
+      const min = String(Math.trunc(time / 60)).padStart(2, 0);
+      const sec = String(time % 60).padStart(2, 0);
 
-    // In each call, print the remaining time to UI
-    labelTimer.textContent = `${min}:${sec}`;
+      // In each call, print the remaining time to UI
+      labelTimer.textContent = `${min}:${sec}`;
 
-    // When 0 seconds, stop timer and log out user
-    if (time === 0) {
-      clearInterval(timer);
-      labelWelcome.textContent = "Log in to get started";
-      containerApp.style.opacity = 0;
-    }
+      // When 0 seconds, stop timer and log out user
+      if (time === 0) {
+        clearInterval(timer);
+        labelWelcome.textContent = "Log in to get started";
+        containerApp.style.opacity = 0;
+        showLoginAttribute();
+      }
 
-    // Decrease 1s
-    time--;
+      // Decrease 1s
+      time--;
   };
 
   // Set time to 5 minutes
@@ -232,7 +250,10 @@ btnLogin.addEventListener("click", function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  
+  if(!currentAccount){
+    alert('User or Pin not Valid, Please CHeck Again!');
+  }
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
@@ -354,7 +375,9 @@ btnClose.addEventListener("click", function (e) {
 let sorted = false;
 btnSort.addEventListener("click", function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  console.log(currentAccount);
+  
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
