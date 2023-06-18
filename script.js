@@ -26,7 +26,7 @@ const account1 = {
     "2020-07-28T23:36:17.929Z",
     "2020-08-01T10:51:36.790Z",
   ],
-  currency: "EUR",
+  currency: "IDR",
   locale: "pt-PT", // de-DE
 };
 
@@ -48,7 +48,7 @@ const account2 = {
     "2020-06-25T18:49:59.371Z",
     "2020-07-26T12:01:20.894Z",
   ],
-  currency: "USD",
+  currency: "IDR",
   locale: "en-US",
 };
 
