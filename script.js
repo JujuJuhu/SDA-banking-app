@@ -172,12 +172,10 @@ const calcDisplaySummary = function (acc) {
  */
 const hideLoginAttribute = () => {
   loginWrapper.style.opacity= 0;
-  loginTextLabel.style.opacity= 0;
 }
 
 const showLoginAttribute = () => {
   loginWrapper.style.opacity= 100;
-  loginTextLabel.style.opacity= 100;
 }
 
 const createUsernames = function (accs) {
