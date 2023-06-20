@@ -49,7 +49,7 @@ const account2 = {
     "2023-06-26T12:01:20.894Z",
   ],
   currency: "IDR",
-  locale: "en-US",
+  locale: "in-ID",
 };
 
 const accounts = [account1, account2];
