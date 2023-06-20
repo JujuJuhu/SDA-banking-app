@@ -209,7 +209,7 @@ nav {
 /* OPERATIONS */
 .operation {
   border-radius: 1rem;
-  padding: 3rem 4rem;
+  padding: 1rem 2rem;
   color: #333;
 }
 
@@ -234,14 +234,14 @@ h2 {
 
 .form {
   display: grid;
-  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-columns: 2fr 4fr 1fr;
   grid-template-rows: auto auto;
   gap: 0.4rem 1rem;
 }
 
 /* Exceptions for interst */
 .form.form--loan {
-  grid-template-columns: 2.5fr 1fr 2.5fr;
+  grid-template-columns: 5fr 1fr 2fr;
 }
 .form__label--loan {
   grid-row: 2;
